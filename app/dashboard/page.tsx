@@ -40,7 +40,7 @@ export default async function DashboardPage() {
 
       <section className="metric-grid">
         <article className="metric-card feature">
-          <div className="metric-top"><span>Saldo total en cuentas</span><span className="metric-icon">₱</span></div>
+          <div className="metric-top"><span>Saldo total en cuentas</span><span className="metric-icon">$</span></div>
           <p className="metric-value">{money(totalBalance)}</p>
           <p className="metric-foot">{accounts.length} {accounts.length === 1 ? "cuenta activa" : "cuentas activas"} · las cuentas se muestran en MXN</p>
         </article>
