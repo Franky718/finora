@@ -6,14 +6,10 @@ export async function GET(request: NextRequest) {
   const tokenHash = request.nextUrl.searchParams.get("token_hash");
   const type = request.nextUrl.searchParams.get("type");
   const requestedNext = request.nextUrl.searchParams.get("next");
-
   const safeNext =
-    requestedNext &&
-    /^\/(?:[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_-]+)*)?$/.test(requestedNext) &&
-    !requestedNext.startsWith("//")
+    requestedNext && /^\/(?:[A-Za-z0-9_-]+(?:\/[A-Za-z0-9_-]+)*)?$/.test(requestedNext) && !requestedNext.startsWith("//")
       ? requestedNext
       : "/dashboard";
-
   const isPasswordRecovery = safeNext === "/reset-password";
   const supabase = await createClient();
 
@@ -31,9 +27,11 @@ export async function GET(request: NextRequest) {
   }
 
   if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
+    const { error: exchangeError } = await supabase.auth.exchangeCodeForSession(code);
 
-    if (!error) {
+    // PKCE codes are bound to the verifier stored by the browser that requested
+    // the flow; the exchange must succeed before a session is accepted.
+    if (!exchangeError) {
       const response = NextResponse.redirect(new URL(safeNext, request.url));
       response.headers.set("Cache-Control", "private, no-store");
       return response;
