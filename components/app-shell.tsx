@@ -5,7 +5,8 @@ const navigation = [
   { href: "/dashboard", label: "Resumen", mark: "⌂" },
   { href: "/accounts", label: "Cuentas", mark: "▤" },
   { href: "/transactions", label: "Movimientos", mark: "↕" },
-  { href: "/goals", label: "Metas de ahorro", mark: "◎" }
+  { href: "/goals", label: "Metas de ahorro", mark: "◎" },
+  { href: "/security", label: "Seguridad", mark: "⌑" }
 ];
 
 export default function AppShell({
