@@ -8,6 +8,10 @@ coverage/
 .env.*
 !.env.example
 *.log
+*.p12
+*.pfx
+*.jks
+*.keystore
 .DS_Store
 .vercel/
 *.tsbuildinfo
