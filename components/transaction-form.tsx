@@ -43,7 +43,7 @@ export default function TransactionForm({
         <select name="categoria_id" required disabled={availableCategories.length === 0}>
           {availableCategories.map((category) => (
             <option key={category.id} value={category.id}>
-              {category.icono ? \`\${category.icono} \` : ""}{category.nombre}
+              {category.icono ? `${category.icono} ` : ""}{category.nombre}
             </option>
           ))}
         </select>
