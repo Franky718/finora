@@ -3,7 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 
 type CookieUpdate = { name: string; value: string; options?: any };
 
-const protectedRoots = ["/dashboard", "/accounts", "/transactions", "/goals", "/reset-password"];
+const protectedRoots = ["/dashboard", "/accounts", "/transactions", "/goals"];
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
