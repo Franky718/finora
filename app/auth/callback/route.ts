@@ -1,7 +1,7 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
-type CookieUpdate = { name: string; value: string; options?: Record<string, unknown> };
+type CookieUpdate = { name: string; value: string; options?: any };
 
 export async function GET(request: NextRequest) {
   const code = request.nextUrl.searchParams.get("code");
@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
   const redirectWithAuthCookies = (destination: URL) => {
     const response = NextResponse.redirect(destination);
     cookieUpdates.forEach(({ name, value, options }) => {
-      response.cookies.set(name, value, options as any);
+      response.cookies.set(name, value, options);
     });
     cacheHeaders.forEach((value, name) => response.headers.set(name, value));
     response.headers.set("Cache-Control", "private, no-store");
